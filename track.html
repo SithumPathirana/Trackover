@@ -3,6 +3,7 @@
         <title>   Trackover </title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" href="Images/WhatsApp Image 2018-02-15 at 10.19.28.jpeg">
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
         <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
         <link href='custom.css' rel='stylesheet' type='text/css'>
@@ -33,21 +34,27 @@
 
          </div> <!-- /.container-->
 
-
-         <script>
-function myMap() {
-  var myCenter = new google.maps.LatLng(6.0535,80.2210);
-  var mapCanvas = document.getElementById("map");
-  var mapOptions = {center: myCenter, zoom: 12};
-  var map = new google.maps.Map(mapCanvas, mapOptions);
-  var marker = new google.maps.Marker({position:myCenter});
-  marker.setMap(map);
-}
+         <script src="https://www.gstatic.com/firebasejs/4.10.0/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyCAi7cBksepycSjYVGgc2o1RJwGWFRThOE",
+    authDomain: "trackover-abc50.firebaseapp.com",
+    databaseURL: "https://trackover-abc50.firebaseio.com",
+    projectId: "trackover-abc50",
+    storageBucket: "trackover-abc50.appspot.com",
+    messagingSenderId: "919766515069"
+  };
+  firebase.initializeApp(config);
 </script>
+
+
+         <script src="script.js">   </script>
 
         
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-        <script src="https://maps.googleapis.com/maps/api/js?callback=myMap"></script>   
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCa28veJ5a9zqX1weqGIePoKRSH6kYrmwI&callback=myMap"
+        async defer></script> 
         
     </body>
 </html>
