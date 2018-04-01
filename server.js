@@ -49,7 +49,7 @@ app.engine('handlebars', exphbs({
 app.set('view engine', 'handlebars');
 
 // Home page of the application
-app.get('', (req, res) => {
+app.get('/', (req, res) => {
     res.render('index');
 });
 
