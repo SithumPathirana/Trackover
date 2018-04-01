@@ -1,0 +1,99 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <title></title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="js.js"></script>
+    <link rel="stylesheet" type="text/css" href="style2.css">
+
+</head>
+<body>
+<header>
+    <table class="t1" align="center">
+        <col width="400">
+        <col width="900">
+        <col width="500">
+
+        <tr>
+            <td id="tdimg"><a  href="index.html"><img src="logos.png" height="90px" width="225px"></a> </td>
+            <td><img src="bb.png" height="115px" width="630px"></td>
+            <td id="t3"><a href="Rlogin.html">Login or Register for an Account </a></td>
+    </table>
+
+</header>
+
+<div id="navbar" >
+    <a href="#">About us</a>
+    <a href="#">Contact us</a>
+    <a href="#">Products</a>
+    <a href="#">Home</a>
+
+</div>
+
+<div>
+    <table align="center">
+        <col width="650">
+        <col width="650">
+        <tr id="tlg">
+            <td>
+
+            </td>
+            <td id="tlog">
+                <form name="" action="" method="post" onsubmit="">
+
+                    User Name/ Email:<input type="text" name="txtname" placeholder="Enter your User Name or Email..."/><br></br>
+                    Password:<input type="password" name="txttel" placeholder="Enter your Password..."/><br></br>
+
+                    <input type="submit" id="button" name="btnnext" value="Login"/>
+
+
+
+
+                </form>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<script>
+    window.onscroll = function() {myFunction()};
+
+    var navbar = document.getElementById("navbar");
+    var sticky = navbar.offsetTop;
+
+    function myFunction() {
+        if (window.pageYOffset >= sticky) {
+            navbar.classList.add("sticky")
+        } else {
+            navbar.classList.remove("sticky");
+        }
+    }
+</script>
+
+
+<footer>
+    <table class="t1" align="center">
+        <col width="400">
+        <col width="1000">
+        <col width="400">
+
+        <tr>
+            <td></td>
+            <td id="td2">Track Over</td>
+            <td></td>
+    </table>
+</footer>
+
+
+</body>
+</html>
+
+
+

@@ -40,19 +40,21 @@ const User=require('./user');
 app.use(express.static(path.join(__dirname, 'public')));
 //app.use(bodyParser.json());
 
+ // 
 app.engine('handlebars', exphbs({
     defaultLayout: 'main'
 }));
 
-
+// Set the template engine
 app.set('view engine', 'handlebars');
 
-app.get('/', (req, res) => {
+// Home page of the application
+app.get('', (req, res) => {
     res.render('index');
 });
 
- 
-app.post('/',urlencodedParser, (req, res) => {
+ // Get the user information from the registration form
+app.post('/register',urlencodedParser, (req, res) => {
     
    const user=new User({
        _id:new mongoose.Types.ObjectId(),
@@ -64,7 +66,7 @@ app.post('/',urlencodedParser, (req, res) => {
    });
    
    
-
+    // Save the user
    user.save()
    .then(result=>{
        console.log(result);
@@ -72,12 +74,12 @@ app.post('/',urlencodedParser, (req, res) => {
    .catch(err=>console.log(err));
   
    // Redirecting to the index page 
-   res.render('index');
+   res.redirect('/');
   
 });
 
 // Authenticating the users
-app.post('/track',urlencodedParser,(req,res)=>{
+app.post('/login',urlencodedParser,(req,res)=>{
      var email=req.body.uname;
      var password=req.body.psw;
 
@@ -92,19 +94,23 @@ app.post('/track',urlencodedParser,(req,res)=>{
             return res.status(404).send();
 
         }
-
+        
+        // Storing the users' information in an array
         var resultArray=[];
         mongo.connect(url,function(err,client){
             if(err) throw err;
             
+            // Connect to the 'trackover' database
             var db=client.db('trackover');
             assert.equal(null,err);
+
+            // Select from the 'locations' collection
             var cursor=db.collection('locations').find();
             cursor.forEach(function(doc,err){
                 resultArray.push(doc);
             },function(){
                 client.close();
-                res.render('track');
+                res.redirect('track');
                 console.log(resultArray);
 
             });
@@ -117,22 +123,28 @@ app.post('/track',urlencodedParser,(req,res)=>{
      
 });
 
+// Direct the user to the track page
 app.get('/track', (req, res) => {
     res.render('track');
-    // res.send("OK");
 });
 
 
-
+// Direct the user to the registar page
 app.get('/siginin', (req, res) => {
     res.render('register');
     // res.send("OK");
 });
 
+app.get('/welcome',(req,res)=>{
+ res.render('register');
+});
+
+// Send a 404 error to irrelevent url requests
 app.get('*', (req, res) => {
     res.status(404).send("PAGE NOT FOUND")
 });
 
+// Setting up the port to the server
 app.listen(9000, () => {
     console.log('Server is up on 9000')
 });

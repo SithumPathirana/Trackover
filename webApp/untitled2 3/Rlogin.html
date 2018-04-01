@@ -1,6 +1,21 @@
-<title> Register </title> 
 
-<body background="img/newImage.png">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <title></title>
+
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="js.js"></script>
+    <link rel="stylesheet" type="text/css" href="style2.css">
+
+</head>
+<body background="newImage.png">
 <header>
     <table class="t1" align="center">
         <col width="400">
@@ -8,8 +23,8 @@
         <col width="500">
 
         <tr>
-            <td id="tdimg"><a  href="index.html"><img src="img/logos.png" ></a> </td>
-            <td><img src="img/bb3.jpg" ></td>
+            <td id="tdimg"><a  href="index.html"><img src="logos.png" ></a> </td>
+            <td><img src="bb3.jpg" ></td>
             <td id="t3"><a href="Rlogin.html"><a href="Rlogin.html"><i class="glyphicon glyphicon-user" style="font-size:19px;"></i> Login or Register for an Account </a></a></td>
     </table>
 
@@ -18,7 +33,7 @@
 <div id="navbar" >
     <a href="#"><b>About us</b></a>
     <a href="#"><b>Devices</b></a>
-    <a href="/"><b>Home</b></a>
+    <a href="index.html"><b>Home</b></a>
 
 </div>
 
@@ -35,14 +50,13 @@
         </td>
 
         <td id="tlog" >
-                <form name="registerForm" action="/register" method="post">
+                <form name="" action="" method="post" onsubmit="">
 
-                    <input type="text" name="fName" placeholder="Enter Your First Name" /><br></br>
-                     <input type="text" name="lName" placeholder="Enter Your Last Name" /><br></br>
-                    <input type="text" name="email" placeholder="Enter your E-mail..."/><br></br>
-                    <input type="text" name="mobileNuber" placeholder="Enter your Mobile number..."/><br></br>
+                    <input type="text" name="txtname" placeholder="Enter your Name..." /><br></br>
+                    <input type="text" name="txtemail" placeholder="Enter your E-mail..."/><br></br>
+                    <input type="text" name="txtadd" placeholder="Enter your Mobile number..."/><br></br>
                     <input type="password" name="txttel" placeholder="Enter your Password..."/><br></br>
-                    <input type="password" name="password" placeholder="Renter your Password..."/><br></br>
+                    <input type="password" name="txttel" placeholder="Renter your Password..."/><br></br>
 
                     <input type="submit" class="button" name="btnnext" value="Register"/>   <br><br>
 
@@ -51,16 +65,13 @@
 
                 </form>
             <a onClick="document.getElementById('form01').style.display='block'; return false;" href="fallback.html" style="color: black">Already a member? Log in</a>
-            
-            
-            
             <div id="form01" class="modal" >
 			
 			
 
-                <form class="loginContent" action="/login"  method="POST" style="background: honeydew">
+                <form class="loginContent" action="/action_page.php"  style="background: honeydew">
                     <div class="imgcontainer">
-                        <img src="img/user.png" alt="Logo" class="logo">
+                        <img src="user.png" alt="Logo" class="logo">
                        
 
                     </div>
@@ -132,7 +143,7 @@
 		</tr>		<tr>
             <td></td>
             <td class="td2"><span class="glyphicon">&#xe194;</span> copyrights 2018 by Track Over</td>
-            <td class="td2">contact us on: <a href="https://accounts.google.com/ServiceLogin/signinchooser?service=mail&passive=true&rm=false&continue=https%3A%2F%2Fmail.google.com%2Fmail%2F&ss=1&scc=1&ltmpl=default&ltmplcache=2&emr=1&osid=1&flowName=GlifWebSignIn&flowEntry=ServiceLogin">trackover@gmail.com</a></td>
+            <td class="td2">contact us on: <a href="#">trackover@gmail.com</a></td>
 		</tr>
 		</table>
 		
@@ -140,3 +151,7 @@
 
 
 </body>
+</html>
+
+
+

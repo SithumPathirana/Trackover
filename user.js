@@ -1,3 +1,4 @@
+ // Importing the 'mongoose' module
 const mongoose=require('mongoose');
 
 // Designing the user schema
