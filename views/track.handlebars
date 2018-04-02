@@ -1,34 +1,92 @@
 
 <title> Track </title> 
 
-<div class="container">
-    <div class="row">
-        <div class="col-lg-8 col-lg-offset-2">
+<body>
+<header style="background-image:url(img/blue2.jpeg)">
+    <table class="t1" align="center" >
+        <col width="400">
+        <col width="900">
+        <col width="500">
 
-            <h1> TRACKOVER </h1>
 
-            <p class="lead"> Use the geographical map given below to locate your mobile device.</p>
+        <tr>
+            <td id="tdimg"><a  href="index.html"><img src="img/logos.png" ></a> </td>
+            <td></td>
+            <td id="t3"><a href="#">Log out from the account</span>
+            </a></td>
+    </table>
 
-            <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor
-                quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper.
-                Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+</header>
 
-            <p>
-                <strong>Pellentesque habitant morbi tristique</strong> senectus et netus et malesuada fames ac turpis egestas. Vestibulum
-                tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas
-                semper.
-                <em>Aenean ultricies mi vitae est.</em> Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper
-                pharetra. Vestibulum erat wisi, condimentum sed,
-                <code>commodo vitae</code>, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis
-                tempus lacus enim ac dui.
-                <a href="#">Donec non enim</a> in turpis pulvinar facilisis. Ut felis.</p>
-
-        </div>
-        <!-- /.8 -->
-    </div>
-    <!-- /.row-->
-    <div id="map"></div>
-    <script src="js/script.js"></script>
-     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCa28veJ5a9zqX1weqGIePoKRSH6kYrmwI&callback=myMap" async defer></script>
+<div id="navbar" >
+    <a href="AboutUs.html"><b>About us</b></a>
+    <a href=""><b>Devices</b></a>
+    <a href="index.html"><b>Home</b></a>
 
 </div>
+
+
+  
+            <div id="map"></div>
+    <script src="js/script.js"></script>
+     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCa28veJ5a9zqX1weqGIePoKRSH6kYrmwI&callback=myMap" async defer></script>
+        </td>
+
+        
+
+
+<script>
+    window.onscroll = function() {myFunction()};
+
+    var navbar = document.getElementById("navbar");
+    var sticky = navbar.offsetTop;
+
+    function myFunction() {
+        if (window.pageYOffset >= sticky) {
+            navbar.classList.add("sticky")
+        } else {
+            navbar.classList.remove("sticky");
+        }
+    }
+</script>
+<script>
+    function openNav() {
+        document.getElementById("mySidenav").style.width = "250px";
+    }
+
+    function closeNav() {
+        document.getElementById("mySidenav").style.width = "0";
+    }
+</script>
+
+
+<footer>
+    <table class="t1" align="center">
+        <col width="400">
+        <col width="1000">
+        <col width="400">
+
+        <tr>
+            <td></td>
+            <td class="td2">Track Over</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td class="td2"><i class="fa fa-facebook-square" style="font-size:25px"></i>
+                <i class="fa fa-whatsapp" style="font-size:25px"></i>
+                <i class="fa fa-android" style="font-size:25px"></i>
+                <i class="fa fa-google" style="font-size:24px"></i>
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td class="td2"><span class="glyphicon">&#xe194;</span> copyrights 2018 by Track Over</td>
+            <td class="td2">contact us on: <a href="#">trackover@gmail.com</a></td>
+        </tr>
+    </table>
+</footer>
+
+
+</body>

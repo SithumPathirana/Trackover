@@ -1,0 +1,119 @@
+<title>   About Us </title>
+
+<body >
+<header style="background-image:url(img/blue2.jpeg)">
+    <table class="t1" align="center" >
+        <col width="400">
+        <col width="900">
+        <col width="500">
+
+
+        <tr>
+            <td id="tdimg"><a  href="index.html"><img src="img/logos.png" ></a> </td>
+            <td></td>
+            <td id="t3"><a href="#">Log out from the account</span>
+            </a></td>
+    </table>
+
+</header>
+
+
+<div id="navbar" >
+    <a href="AboutUs.html"><b>About us</b></a>
+    <a href=""><b>Devices</b></a>
+    <a href="index.html"><b>Home</b></a>
+</div>
+
+<div>
+    <table  align="center">
+        <col width="600">
+        <col width="600">
+        <tr>
+            <td class="about"><h2>Standalone Power</h2><br>
+                Trackover came up in the process of creating a standalone tracking device that has the ability
+                to charge itself with a separate power supply. While the phone is turned off, user will be able
+                to track the location and determine whether it’s on the move or still. Trackover will provide
+                access to the details when the mobile is turned on, Encrypt the data when permission is given,
+                track the SIM details and notify the user when the SIM is removed or replaced without depending
+                on the mobile phone’s battery. <br>
+                <h2>Hard Cover</h2><br>
+                This device will be set to a screw type phone cover. The cover will be fixed to the phone with a
+                specific type of screws thereby making it difficult for a person to remove it in real time providing
+                the device enough time to deliver all the information to the respective user. <br>
+                <h2>Data Encrypting</h2><br>
+                When the person realizes that his/her phone is stolen/misplaced, first he/she can encrypts the data
+                and valuable files that he/she has in the phone. User can simply send a message to the SIM in the
+                mobile phone. This message activates the device’s encrypting process. <br>
+                <h2>GPS Tracking</h2><br>
+                This device uses its own SIM card so that the user can track down the smartphone using this SIM number.
+                This allows the user to track the mobile phone even when it’s being switched off or having a swapped SIM.
+                When the mobile phone is lost or stolen, GPS will work even when the device is not connected to the internet. <br>
+            </td>
+            <td class="about">
+                <img src="img/1.jpg">
+            </td>
+        <tr>
+            <td class="about">
+                <img src="img/ardu.png">
+            </td>
+            <td class="about">
+                <h2>Technologies used</h2><br>
+                Arduino Pro Mini, GSM SIM tracker, GPS Module will be used as the major technologies for the prototype which are
+                cost efficient. The device is containing features that could be achieved using the above mentioned cost efficient
+                technology. Since the behavior of the device affects the budget directly thereby changing the cost of the final product.  <br>
+
+            </td>
+        </tr>
+    </table>
+    <script>
+        window.onscroll = function() {myFunction()};
+
+        var navbar = document.getElementById("navbar");
+        var modal = document.getElementById('form01');
+        var sticky = navbar.offsetTop;
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+        function myFunction() {
+            if (window.pageYOffset >= sticky) {
+                navbar.classList.add("sticky")
+            } else {
+                navbar.classList.remove("sticky");
+            }
+        }
+    </script>
+
+
+    <footer>
+        <table class="t1" align="center">
+            <col width="400">
+            <col width="1000">
+            <col width="400">
+
+            <tr>
+                <td></td>
+                <td class="td2">Track Over</td>
+                <td></td>
+            </tr>
+
+            <td></td>
+            <td class="td2"><i class="fa fa-facebook-square" style="font-size:25px"></i>
+                <i class="fa fa-whatsapp" style="font-size:25px"></i>
+                <i class="fa fa-android" style="font-size:25px"></i>
+                <i class="fa fa-google" style="font-size:24px"></i>
+            </td>
+            <td></td>
+            </tr>		<tr>
+            <td></td>
+            <td class="td2"><span class="glyphicon">&#xe194;</span> copyrights 2018 by Track Over</td>
+            <td class="td2">contact us on: <a href="#">trackover@gmail.com</a></td>
+        </tr>
+        </table>
+
+    </footer>
+
+</div>
+</body>

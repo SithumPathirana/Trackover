@@ -1,99 +1,47 @@
 
 <title> Welcome </title> 
-    <header>
-    <table class="t1" align="center">
-        <col width="400">
-        <col width="900">
-        <col width="500">
+    <body background="img/blue.jpeg">
+<div class="container_fluid bg">
 
-        <tr>
-            <td id="tdimg"><a  href="index.html"><img src="img/logos.png" ></a> </td>
-            <td><img src="img/bb3.jpg" ></td>
-            <td id="t3"><a href="/welcome"><a href="/welcome"><i class="glyphicon glyphicon-user" style="font-size:19px;"></i> Login or Register for an Account </a></a></td>
-    </table>
+    <div class="row" >
+        <div class="col-sm-10 col-sm-offset-1 main">
+            <div class="col-sm-6 left-side bg2">
+                <h1 style="font-size:37px"><b> Breaking boundaries<br> to find your<br>device.</b></br> </br></h1>
+                <p></p>
+                <br>
 
-</header>
+                <br>
+                <p> Dont have an account already? <u><a href="registerPage.html"style="color: crimson">sign up</a></u> </p>
+                <br>or sign in with
+                <a href="#" class="fa fa-facebook"></a>
+                <a href="#" class="fa fa-twitter"></a>
+                <a href="#" class="fa fa-google"></a>
 
-<div id="navbar" >
-    <a href="#"><b>ABOUT US</b></a>
-    <a href="#"><b>DEVICES</b></a>
-    <a href="index.html"><b>HOME</b></a>
+            </div>
+            <div class="col-sm-5 right-side">
+                <form class="form-container" >
+                    <h1 align="center"><img src="img/logos.png"></h1>
 
+                    <div class="form-group">
+                        <label for="Login">Username</label>
+                        <input type="Login" class="form-control" id="Login" placeholder="username">
+                    </div>
+                    <div class="form-group">
+                        <label for="Password1">Password</label>
+                        <input type="password" class="form-control" id="Password1" placeholder="Password">
+                    </div>
+                    <br>
+                    <div class="checkbox" align="center">
+                        <label>
+                            <input type="checkbox">Rememeber me
+                        </label>
+                    </div>
+                    <br>
+                    <button type="submit" class="btn btn-primary btn-block"><a href="index.html">sign in</a></button>
+                </form>
+        </div>
+        </div>
+
+    </div>
 </div>
-
-<div>
-    <table align="center">
-        <tr><td id="icontd">
-		<div id="mySidenav" class="sidenav">
-  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-            <br><br>
-  <a href="#">Locate Device</a><br>
-  <a href="#">Encrypt Device</a><br>
-  <a href="#">Lock Device</a><br>
- 
-</div>
-
-		</td>
-				
-		
-           <div id="map"></div>
-    <script src="js/script.js"></script>
-     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCa28veJ5a9zqX1weqGIePoKRSH6kYrmwI&callback=myMap" async defer></script>
-
-        
-        </tr>
-    </table>
-</div>
-
-<script>
-    window.onscroll = function() {myFunction()};
-
-    var navbar = document.getElementById("navbar");
-    var sticky = navbar.offsetTop;
-
-    function myFunction() {
-        if (window.pageYOffset >= sticky) {
-            navbar.classList.add("sticky")
-        } else {
-            navbar.classList.remove("sticky");
-        }
-    }
-</script>
-<script>
-function openNav() {
-    document.getElementById("mySidenav").style.width = "250px";
-}
-
-function closeNav() {
-    document.getElementById("mySidenav").style.width = "0";
-}
-</script>
-
-
-<footer>
-    <table class="t1" align="center">
-        <col width="400">
-        <col width="1000">
-        <col width="400">
-
-        <tr>
-            <td></td>
-            <td class="td2">Track Over</td>
-            <td></td>
-		</tr>
-		<tr>
-            <td></td>
-            <td class="td2"><i class="fa fa-facebook-square" style="font-size:25px"></i>
-			<i class="fa fa-whatsapp" style="font-size:25px"></i>
-			<i class="fa fa-android" style="font-size:25px"></i>
-			<i class="fa fa-google" style="font-size:24px"></i>
-			</td>
-            <td></td>
-		</tr>
-		<tr>
-            <td></td>
-            <td class="td2"><span class="glyphicon">&#xe194;</span> copyrights 2018 by Track Over</td>
-            <td class="td2">contact us on: <a href="https://accounts.google.com/ServiceLogin/signinchooser?service=mail&passive=true&rm=false&continue=https%3A%2F%2Fmail.google.com%2Fmail%2F&ss=1&scc=1&ltmpl=default&ltmplcache=2&emr=1&osid=1&flowName=GlifWebSignIn&flowEntry=ServiceLogin">trackover@gmail.com</a></td>
-		</tr>
-    </table>
-</footer>
+</body>

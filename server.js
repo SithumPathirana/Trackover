@@ -53,6 +53,10 @@ app.get('/', (req, res) => {
     res.render('index');
 });
 
+// app.get('/register', (req, res) => {
+//     res.render('index');
+// });
+
  // Get the user information from the registration form
 app.post('/register',urlencodedParser, (req, res) => {
     
@@ -138,6 +142,10 @@ app.get('/siginin', (req, res) => {
 app.get('/welcome',(req,res)=>{
  res.render('register');
 });
+
+app.get('/aboutUs',(req,res)=>{
+    res.render('aboutUs');
+   });
 
 // Send a 404 error to irrelevent url requests
 app.get('*', (req, res) => {

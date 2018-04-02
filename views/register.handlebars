@@ -1,142 +1,35 @@
 <title> Register </title> 
 
-<body background="img/newImage.png">
-<header>
-    <table class="t1" align="center">
-        <col width="400">
-        <col width="900">
-        <col width="500">
+<body background="img/blue.jpeg">
+<div class="col-md-4 col-sm-4 col-xs-12 "></div>
+<div class="col-md-4 col-sm-4 col-xs-12 register2bg" style="width: 100%;
+   height:100vh;">
+<form class="newcontainer">
+    <div class="form-group">
+        <h1 align="center" style="color: #55ACEE">Sign up Form</h1>
+        <label for="InputName">First Name</label>
+        <input type="name" class="form-control" id="InputName" placeholder="name">
+    </div>
+    <div class="form-group">
+        <label for="InputEmail">Email</label>
+        <input type="email" class="form-control" id="InputEmail" placeholder="email">
+    </div>
+    <div class="form-group">
+        <label for="InputMobile">Mobile Number</label>
+        <input type="mobilenumber" class="form-control" id="InputMobile" placeholder="mobile number">
+    </div>
+    <div class="form-group">
+        <label for="InputPassword">Password</label>
+        <input type="password" class="form-control" id="InputPassword" placeholder="Password">
+    </div>
+    <div class="form-group">
+        <label for="InputPassword1">Re-enter password</label>
+        <input type="password" class="form-control" id="InputPassword1" placeholder="Re-enter Password">
+    </div>
+   <br>
 
-        <tr>
-            <td id="tdimg"><a  href="index.html"><img src="img/logos.png" ></a> </td>
-            <td><img src="img/bb3.jpg" ></td>
-            <td id="t3"><a href="Rlogin.html"><a href="Rlogin.html"><i class="glyphicon glyphicon-user" style="font-size:19px;"></i> Login or Register for an Account </a></a></td>
-    </table>
-
-</header>
-
-<div id="navbar" >
-    <a href="#"><b>About us</b></a>
-    <a href="#"><b>Devices</b></a>
-    <a href="/"><b>Home</b></a>
-
+    <button type="submit" class="btn btn-primary btn-block">sign up</button><br>
+    <h5 align="center"> return back to <a href="homePage.html"style="color: crimson">sign in</a></h5>
+</form>
 </div>
-
-<div>
-    <table align="center">
-        <col width="650">
-        <col width="650">
-
-        <tr id="plg">
-            <td style= "font-family: Castellar;">
-
-                <p><b>Find your device<br> <br> Be limitless <br><br> Conquer all bounds </b></p>
-
-        </td>
-
-        <td id="tlog" >
-                <form name="registerForm" action="/register" method="post">
-
-                    <input type="text" name="fName" placeholder="Enter Your First Name" /><br></br>
-                     <input type="text" name="lName" placeholder="Enter Your Last Name" /><br></br>
-                    <input type="text" name="email" placeholder="Enter your E-mail..."/><br></br>
-                    <input type="text" name="mobileNuber" placeholder="Enter your Mobile number..."/><br></br>
-                    <input type="password" name="txttel" placeholder="Enter your Password..."/><br></br>
-                    <input type="password" name="password" placeholder="Renter your Password..."/><br></br>
-
-                    <input type="submit" class="button" name="btnnext" value="Register"/>   <br><br>
-
-                   <!--<a href="login.html" style="color: black">Already a member? Log in</a>-->
-
-
-                </form>
-            <a onClick="document.getElementById('form01').style.display='block'; return false;" href="fallback.html" style="color: black">Already a member? Log in</a>
-            
-            
-            
-            <div id="form01" class="modal" >
-			
-			
-
-                <form class="loginContent" action="/login"  method="POST" style="background: honeydew">
-                    <div class="imgcontainer">
-                        <img src="img/user.png" alt="Logo" class="logo">
-                       
-
-                    </div>
-
-                    <div class="container" >
-                        <label class="dist"><b><i class="glyphicon glyphicon-user" style="font-size:19px;"></i></b></label>
-                        <input type="text" placeholder="Enter Username" name="uname" required><br>
-                        <label class="dist"><b><i class="glyphicon glyphicon-lock" style="font-size:19px;"></i></b></label>
-                        <input type="password" placeholder="Enter Password" name="psw" required>
-
-                        <button type="submit">Login </button><br><br>
-                        <label>
-
-                            <input type="checkbox" checked="checked" name="remember"> Remember me</label><br><br>
-							<span class="psw"> <a href="#" style="color: black">Forgot password?</a></span><br><br>
-                    
-                        <button type="button" onclick="document.getElementById('form01').style.display='none'" class="cancelbtn">Exit</button><br>
-                        
-						</div>
-                </form>
-            </div>
-
-            </td>
-        </tr>
-    </table>
-</div>
-
-<script>
-    window.onscroll = function() {myFunction()};
-
-    var navbar = document.getElementById("navbar");
-    var modal = document.getElementById('form01');
-    var sticky = navbar.offsetTop;
-
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-    }
-    function myFunction() {
-        if (window.pageYOffset >= sticky) {
-            navbar.classList.add("sticky")
-        } else {
-            navbar.classList.remove("sticky");
-        }
-    }
-</script>
-
-
-<footer>
-    <table class="t1" align="center">
-        <col width="400">
-        <col width="1000">
-        <col width="400">
-
-        <tr>
-            <td></td>
-            <td class="td2">Track Over</td>
-            <td></td>
-		</tr>
-		
-		   <td></td>
-            <td class="td2"><i class="fa fa-facebook-square" style="font-size:25px"></i>
-			<i class="fa fa-whatsapp" style="font-size:25px"></i>
-			<i class="fa fa-android" style="font-size:25px"></i>
-			<i class="fa fa-google" style="font-size:24px"></i>
-			</td>
-            <td></td>
-		</tr>		<tr>
-            <td></td>
-            <td class="td2"><span class="glyphicon">&#xe194;</span> copyrights 2018 by Track Over</td>
-            <td class="td2">contact us on: <a href="https://accounts.google.com/ServiceLogin/signinchooser?service=mail&passive=true&rm=false&continue=https%3A%2F%2Fmail.google.com%2Fmail%2F&ss=1&scc=1&ltmpl=default&ltmplcache=2&emr=1&osid=1&flowName=GlifWebSignIn&flowEntry=ServiceLogin">trackover@gmail.com</a></td>
-		</tr>
-		</table>
-		
-</footer>
-
-
 </body>
