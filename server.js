@@ -108,15 +108,34 @@ app.post('/register',urlencodedParser,(req,res)=>{
         // Handle Errors here.
         var errorCode = error.code;
         var errorMessage = error.message;
-        
-      
+        });
+  
 
-      
-        
-
-        // ...
+    
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+          // User is signed in.
+          var firstName=req.body.fName;
+          var email=req.body.email;
+          var lastName=req.body.lName;
+          var mobileNumber=req.body.mobileNumber;
+          
+          firebase.database().ref(user.uid).set({
+               firstName:firstName,
+               lastName:lastName,
+               email:email,
+               mobileNumber:mobileNumber,
+               lattitude:"",
+               longitude:""
+          });
+          
+        } else {
+          // No user is signed in.
+        }
       });
+
       res.redirect('/');
+
      
 
 });
@@ -125,27 +144,36 @@ app.post('/login',urlencodedParser,(req,res)=>{
     var email=req.body.uname;
     var password=req.body.psw;
     
-  var state=1;
+  
     firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
         // Handle Errors here.
         var errorCode = error.code;
         var errorMessage = error.message;
-       if(errorCode=="auth/invalid-email"){
-           console.log("Invalid Email");
-           state=0
-       }else  if(errorCode=="auth/wrong-password"){
-        console.log("Wrong Password");
-        state=0;
- }else{
-    
- }
-       
-      
-        // ...
-      });
+        // var userId = firebase.auth().currentUser.uid;
+        // console.log(userId);
+     });
 
-     console.log(state);
        
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+            // var lattitude = firebase.database().ref(user.uid+'/lattitude');
+            //  lattitude.on('value',function(snapshot){
+            //      console.log(snapshot.val());
+            //  });
+             
+            //  var longitude = firebase.database().ref(user.uid+'/longitude');
+            //  longitude.on('value',function(snapshot){
+            //      console.log(snapshot.val());
+            //  });
+        } else {
+          // No user is signed in.
+        }
+      });
+       res.redirect('track');
+
+   
+     
+
 
     
 });
@@ -199,7 +227,29 @@ app.post('/login',urlencodedParser,(req,res)=>{
 
 // Direct the user to the track page
 app.get('/track', (req, res) => {
-    res.render('track');
+
+  
+    
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+
+           console.log(user.uid);
+           var lattitude = firebase.database().ref(user.uid+'/lattitude');
+           lattitude.on('value',function(snapshot){
+                 console.log(snapshot.val());
+           });
+           
+           var longitude = firebase.database().ref(user.uid+'/longitude');
+           longitude.on('value',function(snapshot){
+              console.log( snapshot.val());
+           });
+
+        } else {
+          // No user is signed in.
+        }
+      });
+    
+    
 });
 
 
