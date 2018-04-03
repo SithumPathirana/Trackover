@@ -19,16 +19,16 @@
 
             </div>
             <div class="col-sm-5 right-side">
-                <form class="form-container" >
+                <form class="form-container" method="POST"  action="/login" >
                     <h1 align="center"><img src="img/logos.png"></h1>
 
                     <div class="form-group">
                         <label for="Login">Username</label>
-                        <input type="Login" class="form-control" id="Login" placeholder="username">
+                        <input type="Login" class="form-control" id="username" placeholder="username" name="uname">
                     </div>
                     <div class="form-group">
                         <label for="Password1">Password</label>
-                        <input type="password" class="form-control" id="Password1" placeholder="Password">
+                        <input type="password" class="form-control" id="password" placeholder="Password" name="psw"  >
                     </div>
                     <br>
                     <div class="checkbox" align="center">
@@ -37,7 +37,7 @@
                         </label>
                     </div>
                     <br>
-                    <button type="submit" class="btn btn-primary btn-block"><a href="index.html">sign in</a></button>
+                    <input type="submit" class="btn btn-primary btn-block" value="Sign In" >
                 </form>
         </div>
         </div>
@@ -45,3 +45,6 @@
     </div>
 </div>
 </body>
+
+
+  

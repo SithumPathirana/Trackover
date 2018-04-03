@@ -1,15 +1,10 @@
  
-var lattitude=6.874092099999999;
-var longitude=79.8604934;
+ var lattitude=6.874092099999999;
+ var longitude=79.8604934;
 
 
 
-  
-
-
-
-
-function myMap() {
+  function myMap() {
   var myCenter = new google.maps.LatLng(lattitude,longitude);
   var mapCanvas = document.getElementById("map");
   var mapOptions = {center: myCenter, zoom: 12};
@@ -21,6 +16,9 @@ function myMap() {
   });
   marker.setMap(map);
 }
+
+
+
 
 
 

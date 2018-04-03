@@ -20,6 +20,21 @@ const mongoose=require('mongoose');
 // Require mongo module
 const mongo=require('mongodb');
 
+// Require firebase module
+var firebase = require("firebase");
+
+// configuring firebase
+var config = {
+    apiKey: "AIzaSyCKgcKXlpBybhtF9c-woG4rQhyYg_HyuVI",
+    authDomain: "trackover-f78a8.firebaseapp.com",
+    databaseURL: "https://trackover-f78a8.firebaseio.com",
+    projectId: "trackover-f78a8",
+    storageBucket: "trackover-f78a8.appspot.com",
+    // messagingSenderId: "620252106693"
+  };
+  firebase.initializeApp(config);
+
+
 // Require assert
 const assert=require('assert');
 
@@ -48,6 +63,8 @@ app.engine('handlebars', exphbs({
 // Set the template engine
 app.set('view engine', 'handlebars');
 
+
+
 // Home page of the application
 app.get('/', (req, res) => {
     res.render('index');
@@ -58,74 +75,127 @@ app.get('/', (req, res) => {
 // });
 
  // Get the user information from the registration form
-app.post('/register',urlencodedParser, (req, res) => {
+// app.post('/register',urlencodedParser, (req, res) => {
     
-   const user=new User({
-       _id:new mongoose.Types.ObjectId(),
-       firstName:req.body.fName,
-       lastName:req.body.lName,
-       email:req.body.email,
-       password:req.body.password,
-       mobileNumber:req.body.mobileNumber
-   });
+//    const user=new User({
+//        _id:new mongoose.Types.ObjectId(),
+//        firstName:req.body.fName,
+//        lastName:req.body.lName,
+//        email:req.body.email,
+//        password:req.body.password,
+//        mobileNumber:req.body.mobileNumber
+//    });
    
    
-    // Save the user
-   user.save()
-   .then(result=>{
-       console.log(result);
-   })
-   .catch(err=>console.log(err));
+//     // Save the user
+//    user.save()
+//    .then(result=>{
+//        console.log(result);
+//    })
+//    .catch(err=>console.log(err));
   
-   // Redirecting to the index page 
-   res.redirect('/');
+//    // Redirecting to the index page 
+//    res.redirect('/');
   
+// });
+
+
+app.post('/register',urlencodedParser,(req,res)=>{
+    var email=req.body.email;
+    var password=req.body.password;
+     
+    firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        
+      
+
+      
+        
+
+        // ...
+      });
+      res.redirect('/');
+     
+
 });
+
+app.post('/login',urlencodedParser,(req,res)=>{
+    var email=req.body.uname;
+    var password=req.body.psw;
+    
+  var state=1;
+    firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+       if(errorCode=="auth/invalid-email"){
+           console.log("Invalid Email");
+           state=0
+       }else  if(errorCode=="auth/wrong-password"){
+        console.log("Wrong Password");
+        state=0;
+ }else{
+    
+ }
+       
+      
+        // ...
+      });
+
+     console.log(state);
+       
+
+    
+});
+
+
 
 // Authenticating the users
-app.post('/login',urlencodedParser,(req,res)=>{
-     var email=req.body.uname;
-     var password=req.body.psw;
+// app.post('/login',urlencodedParser,(req,res)=>{
+//      var email=req.body.uname;
+//      var password=req.body.psw;
 
-     User.findOne({email:email,password:password},function(err,user){
+//      User.findOne({email:email,password:password},function(err,user){
 
-        if(err){
-            console.log(err);
-           return  res.status(500).send();
-        }
+//         if(err){
+//             console.log(err);
+//            return  res.status(500).send();
+//         }
 
-        if(!user){
-            return res.status(404).send();
+//         if(!user){
+//             return res.status(404).send();
 
-        }
+//         }
         
-        // Storing the users' information in an array
-        var resultArray=[];
-        mongo.connect(url,function(err,client){
-            if(err) throw err;
+//         // Storing the users' information in an array
+//         var resultArray=[];
+//         mongo.connect(url,function(err,client){
+//             if(err) throw err;
             
-            // Connect to the 'trackover' database
-            var db=client.db('trackover');
-            assert.equal(null,err);
+//             // Connect to the 'trackover' database
+//             var db=client.db('trackover');
+//             assert.equal(null,err);
 
-            // Select from the 'locations' collection
-            var cursor=db.collection('locations').find();
-            cursor.forEach(function(doc,err){
-                resultArray.push(doc);
-            },function(){
-                client.close();
-                res.redirect('track');
-                console.log(resultArray);
+//             // Select from the 'locations' collection
+//             var cursor=db.collection('locations').find();
+//             cursor.forEach(function(doc,err){
+//                 resultArray.push(doc);
+//             },function(){
+//                 client.close();
+//                 res.redirect('track');
+//                 console.log(resultArray);
 
-            });
-        });
+//             });
+//         });
 
-       // return res.render('track');
+//        // return res.render('track');
          
-     })
+//      })
      
      
-});
+// });
 
 // Direct the user to the track page
 app.get('/track', (req, res) => {

@@ -4,19 +4,25 @@
 <div class="col-md-4 col-sm-4 col-xs-12 "></div>
 <div class="col-md-4 col-sm-4 col-xs-12 register2bg" style="width: 100%;
    height:100vh;">
-<form class="newcontainer">
+<form class="newcontainer" method="POST" action="/register">
     <div class="form-group">
         <h1 align="center" style="color: #55ACEE">Sign up Form</h1>
         <label for="InputName">First Name</label>
-        <input type="name" class="form-control" id="InputName" placeholder="name">
+        <input type="name" class="form-control" id="InputName" placeholder="first name" name="fName"  >
     </div>
+
+ <div class="form-group">
+        <label for="InputLName">Last Name</label>
+        <input type="name" class="form-control"  placeholder="last name" name="lName" >
+    </div>
+
     <div class="form-group">
         <label for="InputEmail">Email</label>
-        <input type="email" class="form-control" id="InputEmail" placeholder="email">
+        <input type="email" class="form-control" id="InputEmail" placeholder="email" name="email">
     </div>
     <div class="form-group">
         <label for="InputMobile">Mobile Number</label>
-        <input type="mobilenumber" class="form-control" id="InputMobile" placeholder="mobile number">
+        <input type="mobilenumber" class="form-control" id="InputMobile" placeholder="mobile number" name="mobileNumber">
     </div>
     <div class="form-group">
         <label for="InputPassword">Password</label>
@@ -24,12 +30,46 @@
     </div>
     <div class="form-group">
         <label for="InputPassword1">Re-enter password</label>
-        <input type="password" class="form-control" id="InputPassword1" placeholder="Re-enter Password">
+        <input type="password" class="form-control" id="InputPassword1" placeholder="Re-enter Password" name="password">
     </div>
    <br>
-
-    <button type="submit" class="btn btn-primary btn-block">sign up</button><br>
-    <h5 align="center"> return back to <a href="homePage.html"style="color: crimson">sign in</a></h5>
+   
+    <input type="submit" class="btn btn-primary btn-block"  value="Submit" > <br>
+    
+    <h5 align="center"> return back to <a href="homePage.html"style="color: crimson">  sign in</a></h5>
 </form>
 </div>
 </body>
+
+
+{{!-- <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyCKgcKXlpBybhtF9c-woG4rQhyYg_HyuVI",
+    authDomain: "trackover-f78a8.firebaseapp.com",
+    databaseURL: "https://trackover-f78a8.firebaseio.com",
+    projectId: "trackover-f78a8",
+    storageBucket: "trackover-f78a8.appspot.com",
+    messagingSenderId: "620252106693"
+  };
+  firebase.initializeApp(config);
+   
+   function Create(){
+  var email=document.getElementById("InputEmail").value;
+  var password=document.getElementById("InputPassword1").value;
+
+    
+   firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+   // Handle Errors here.
+   var errorCode = error.code;
+    var errorMessage = error.message;
+   console.log(errorMessage);
+// ...
+});
+
+}
+  
+
+</script>
+  --}}
