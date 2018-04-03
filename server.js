@@ -218,7 +218,7 @@ app.post('/login',urlencodedParser,(req,res)=>{
 //             });
 //         });
 
-//        // return res.render('track');
+//         return res.render('track');
          
 //      })
      
@@ -248,13 +248,15 @@ app.get('/track', (req, res) => {
           // No user is signed in.
         }
       });
+
+      res.render('track');
     
     
 });
 
 
 // Direct the user to the registar page
-app.get('/siginin', (req, res) => {
+app.get('/signup', (req, res) => {
     res.render('register');
     // res.send("OK");
 });
