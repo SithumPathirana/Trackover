@@ -312,8 +312,9 @@ app.get('*', (req, res) => {
     res.status(404).send("PAGE NOT FOUND")
 });
 
+const PORT = process.env.PORT || 9000;
 // Setting up the port to the server
-app.listen(9000, () => {
-    console.log('Server is up on 9000')
+app.listen(PORT, () => {
+    console.log('Server is up on', PORT)
 });
 
