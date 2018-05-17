@@ -12,7 +12,7 @@
         <tr>
             <td id="tdimg"><a  href="/"><img src="img/logos.png" ></a> </td>
             <td></td>
-            <td id="t3"><a href="#">Log out from the account</span>
+            <td id="t3"><a href="/signout">Log out from the account</span>
             </a></td>
     </table>
 
@@ -28,7 +28,28 @@
 
   
             <div id="map"></div>
-    <script src="js/script.js"></script>
+    <script>
+      
+       var lattitude={{lattitude}};
+       var longitude={{longitude}};
+
+
+
+  function myMap() {
+  var myCenter = new google.maps.LatLng(lattitude,longitude);
+  var mapCanvas = document.getElementById("map");
+  var mapOptions = {center: myCenter, zoom: 18};
+  var map = new google.maps.Map(mapCanvas, mapOptions);
+  var marker = new google.maps.Marker
+  ({position:myCenter
+    //,
+    //icon:'Images/Location_marker_pin_map_gps.png' 
+  });
+  marker.setMap(map);
+}
+
+
+    </script>
      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCa28veJ5a9zqX1weqGIePoKRSH6kYrmwI&callback=myMap" async defer></script>
         </td>
 

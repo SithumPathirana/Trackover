@@ -11,7 +11,7 @@ const path = require('path');
 // Require body parser
 const bodyParser = require('body-parser');
 
-// Middleware which store the data in the variabl
+// Middleware which store the data in the variable
 var urlencodedParser=bodyParser.urlencoded({extended:false});
 
 // Require mongoose
@@ -46,7 +46,7 @@ var url='mongodb://localhost/';
 const app = express();
 
 // Connect to the trackover database
-mongoose.connect('mongodb://localhost/trackover');
+// mongoose.connect('mongodb://localhost/trackover');
 //mongoose.connect('mongodb://trackover:trackover123@trackover-shard-00-00-ceozy.mongodb.net:27017,trackover-shard-00-01-ceozy.mongodb.net:27017,trackover-shard-00-02-ceozy.mongodb.net:27017/test?ssl=true&replicaSet=Trackover-shard-0&authSource=admin');
 
 // Importing user module
@@ -55,7 +55,7 @@ const User=require('./user');
 app.use(express.static(path.join(__dirname, 'public')));
 //app.use(bodyParser.json());
 
- // 
+ // Set the default layout as main.handlebars
 app.engine('handlebars', exphbs({
     defaultLayout: 'main'
 }));
@@ -70,11 +70,10 @@ app.get('/', (req, res) => {
     res.render('index');
 });
 
-// app.get('/register', (req, res) => {
-//     res.render('index');
-// });
 
- // Get the user information from the registration form
+
+ // Saving the users in a Mongo Database which can be used as an alternative 
+ // for Firebase realtime database
 // app.post('/register',urlencodedParser, (req, res) => {
     
 //    const user=new User({
@@ -99,7 +98,7 @@ app.get('/', (req, res) => {
   
 // });
 
-
+// Register the user in firebase realtime database
 app.post('/register',urlencodedParser,(req,res)=>{
     var email=req.body.email;
     var password=req.body.password;
@@ -108,6 +107,7 @@ app.post('/register',urlencodedParser,(req,res)=>{
         // Handle Errors here.
         var errorCode = error.code;
         var errorMessage = error.message;
+        console.log(errorCode);
         });
   
 
@@ -120,7 +120,7 @@ app.post('/register',urlencodedParser,(req,res)=>{
           var lastName=req.body.lName;
           var mobileNumber=req.body.mobileNumber;
           
-          firebase.database().ref(user.uid).set({
+          firebase.database().ref('Users/'+user.uid).set({
                firstName:firstName,
                lastName:lastName,
                email:email,
@@ -140,36 +140,52 @@ app.post('/register',urlencodedParser,(req,res)=>{
 
 });
 
+// Log In a user who has already signed up
 app.post('/login',urlencodedParser,(req,res)=>{
     var email=req.body.uname;
     var password=req.body.psw;
-    
+    console.log(email);
+    console.log(password);
   
-    firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
-        // Handle Errors here.
-        var errorCode = error.code;
-        var errorMessage = error.message;
+    firebase.auth().signInWithEmailAndPassword(email, password)
+    .then(() => {
+        res.redirect('/track'); 
+    })
+    .catch(function(error) {
+
+        res.redirect('/');
+        // // Handle Errors here.
+        // var errorCode = error.code;
+        // var errorMessage = error.message;
+        // //console.log(errorCode);
+        // if(errorCode=="auth/wrong-password"){
+        //   res.redirect('/');
+        // }else{
+        //     res.redirect('/track'); 
+        // }
         // var userId = firebase.auth().currentUser.uid;
         // console.log(userId);
      });
 
        
-    firebase.auth().onAuthStateChanged(function(user) {
-        if (user) {
-            // var lattitude = firebase.database().ref(user.uid+'/lattitude');
-            //  lattitude.on('value',function(snapshot){
-            //      console.log(snapshot.val());
-            //  });
+    // firebase.auth().onAuthStateChanged(function(user) {
+    //     if (user) {
+    //         // var lattitude = firebase.database().ref(user.uid+'/lattitude');
+    //         //  lattitude.on('value',function(snapshot){
+    //         //      console.log(snapshot.val());
+    //         //  });
              
-            //  var longitude = firebase.database().ref(user.uid+'/longitude');
-            //  longitude.on('value',function(snapshot){
-            //      console.log(snapshot.val());
-            //  });
-        } else {
-          // No user is signed in.
-        }
-      });
-       res.redirect('track');
+    //         //  var longitude = firebase.database().ref(user.uid+'/longitude');
+    //         //  longitude.on('value',function(snapshot){
+    //         //      console.log(snapshot.val());
+    //         //  });
+           
+    //     } else {
+    //       // No user is signed in.
+    //     }
+        
+    //   });
+     
 
    
      
@@ -180,7 +196,7 @@ app.post('/login',urlencodedParser,(req,res)=>{
 
 
 
-// Authenticating the users
+// Authenticating the users in the MongoDB
 // app.post('/login',urlencodedParser,(req,res)=>{
 //      var email=req.body.uname;
 //      var password=req.body.psw;
@@ -225,31 +241,44 @@ app.post('/login',urlencodedParser,(req,res)=>{
      
 // });
 
+
 // Direct the user to the track page
 app.get('/track', (req, res) => {
 
   
-    
+     // Get the lattitude and the longitude location of a user who has currently signed in.
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
-
+            var a1;
+            var a2;
+        
            console.log(user.uid);
-           var lattitude = firebase.database().ref(user.uid+'/lattitude');
-           lattitude.on('value',function(snapshot){
-                 console.log(snapshot.val());
+           
+           var lat = firebase.database().ref('Users/'+user.uid+'/lattitude');
+           lat.on('value',function(snapshot){
+                 a1=snapshot.val();
+                 console.log(a1);
            });
            
-           var longitude = firebase.database().ref(user.uid+'/longitude');
-           longitude.on('value',function(snapshot){
-              console.log( snapshot.val());
+           var lon = firebase.database().ref('Users/'+user.uid+'/longitude');
+           lon.on('value',function(snapshot){
+              a2=snapshot.val();
+              console.log(a2);
+
+              res.render('track',{
+                lattitude:a1,
+                longitude:a2
+            });
            });
+
+         
 
         } else {
           // No user is signed in.
         }
       });
-
-      res.render('track');
+        
+     
     
     
 });
@@ -261,13 +290,22 @@ app.get('/signup', (req, res) => {
     // res.send("OK");
 });
 
-app.get('/welcome',(req,res)=>{
- res.render('register');
-});
 
+// Direct the user to the "About Us" page
 app.get('/aboutUs',(req,res)=>{
     res.render('aboutUs');
    });
+
+// Sign out a user
+app.get('/signout',(req,res)=>{
+    firebase.auth().signOut().then(function() {
+        // Sign-out successful.
+        res.redirect('/');
+      }).catch(function(error) {
+        // An error happened.
+      });
+     
+});
 
 // Send a 404 error to irrelevent url requests
 app.get('*', (req, res) => {
