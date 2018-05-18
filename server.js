@@ -64,11 +64,11 @@ app.engine('handlebars', exphbs({
 app.set('view engine', 'handlebars');
 
 
-
 // Home page of the application
 app.get('/', (req, res) => {
     res.render('index');
 });
+
 
 
 
@@ -141,19 +141,31 @@ app.post('/register',urlencodedParser,(req,res)=>{
 });
 
 // Log In a user who has already signed up
-app.post('/login',urlencodedParser,(req,res)=>{
+app.post('/login',urlencodedParser,(req,res,next)=>{
     var email=req.body.uname;
     var password=req.body.psw;
     console.log(email);
     console.log(password);
+
+    // firebase.auth().onAuthStateChanged(function(user) {
+    //     if (user) {
+    //         res.redirect('/track'); 
+    //     } else {
+    //       console.log("User has not logged in");
+    //     }
+    //   });
   
+   
     firebase.auth().signInWithEmailAndPassword(email, password)
     .then(() => {
         res.redirect('/track'); 
+        
     })
     .catch(function(error) {
 
-        res.redirect('/');
+        next();
+        
+        
         // // Handle Errors here.
         // var errorCode = error.code;
         // var errorMessage = error.message;
@@ -242,13 +254,16 @@ app.post('/login',urlencodedParser,(req,res)=>{
 // });
 
 
+
+
 // Direct the user to the track page
 app.get('/track', (req, res) => {
 
   
      // Get the lattitude and the longitude location of a user who has currently signed in.
-    firebase.auth().onAuthStateChanged(function(user) {
-        if (user) {
+     var user = firebase.auth().currentUser;
+   // firebase.auth().onAuthStateChanged(function(user) {
+       // if (user) {
             var a1;
             var a2;
         
@@ -266,17 +281,19 @@ app.get('/track', (req, res) => {
               console.log(a2);
 
               res.render('track',{
-                lattitude:a1,
-                longitude:a2
-            });
-           });
+                  lattitude:a1,
+                  longitude:a2
+              });
 
+             
+            });
+           
          
 
-        } else {
+        //} else {
           // No user is signed in.
-        }
-      });
+        //}
+      //});
         
      
     
@@ -290,6 +307,10 @@ app.get('/signup', (req, res) => {
     // res.send("OK");
 });
 
+// Home page of the application
+app.post('/login', (req, res) => {
+    res.redirect('/');
+});
 
 // Direct the user to the "About Us" page
 app.get('/aboutUs',(req,res)=>{
