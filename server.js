@@ -107,9 +107,10 @@ app.post('/register',urlencodedParser,(req,res)=>{
         // Handle Errors here.
         var errorCode = error.code;
         var errorMessage = error.message;
-        console.log(errorCode);
+       
         });
-  
+       
+        
 
     
     firebase.auth().onAuthStateChanged(function(user) {
@@ -128,6 +129,9 @@ app.post('/register',urlencodedParser,(req,res)=>{
                lattitude:"",
                longitude:""
           });
+
+         
+
           
         } else {
           // No user is signed in.
@@ -261,9 +265,9 @@ app.get('/track', (req, res) => {
 
   
      // Get the lattitude and the longitude location of a user who has currently signed in.
-     var user = firebase.auth().currentUser;
-   // firebase.auth().onAuthStateChanged(function(user) {
-       // if (user) {
+     //var user = firebase.auth().currentUser;
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
             var a1;
             var a2;
         
@@ -280,20 +284,21 @@ app.get('/track', (req, res) => {
               a2=snapshot.val();
               console.log(a2);
 
-              res.render('track',{
-                  lattitude:a1,
-                  longitude:a2
+              
               });
-
+             
+              res.render('track',{
+                lattitude:a1,
+                longitude:a2
              
             });
-           
          
 
-        //} else {
+        } else {
           // No user is signed in.
-        //}
-      //});
+        }
+       
+      });
         
      
     
