@@ -1,0 +1,124 @@
+  <title>  Devices </title>
+  <body background="img/devices.png">
+<header style="background-image:url(img/blue2.jpeg)">
+    <table class="t1" align="center">
+        <col width="400">
+        <col width="900">
+        <col width="500">
+
+        <tr>
+            <td id="tdimg"><a  href="index.html"><img src="img/logos.png" ></a> </td>
+            <td></td>
+            <td id="t3"><a href="/signout">Log out from the account</span>
+            </a></td>
+    </table>
+
+</header>
+
+<div id="navbar" >
+    <a href="/aboutUs"><b>About us</b></a>
+    <a href="/devices"><b>Devices</b></a>
+    <a href="/"><b>Home</b></a>
+</div>
+
+<div>
+    <table  align="center">
+        <col width="300">
+        <col width="600">
+        <col width="300">
+        <tr>
+            <td>
+            </td>
+            <td>
+                <br><br><br><br><br>
+        
+            </td>
+            <td>
+            </td>
+            </tr>
+        <tr>
+            <td>
+            </td>
+            <td class="device">
+                <h1>Keep All Your TrackOver Devices Connected</h1><br>  
+                <h3>Device Currently Connected</h3>
+                
+            </td>
+            <td>
+            </td>
+        <tr>
+            <td>
+            </td>
+            <td class="device">
+              <br><h2>Huawei P9 Lite</h2><br>  
+              <img src="img/p9.jpg" width="200" >
+              <p><br><br></p>
+            </td>
+            <td>
+            </td>
+        </tr>
+        <tr>
+            <td>
+            </td>
+            <td><br><br><img src="img/devices2.png"  >
+            </td>
+            <td>
+            </td>
+    </table>
+    <script>
+        /*when scrolling down the window it is difficult to come back up to go to the navigation bar.
+            This was solved  by providing an onscroll function to the window.This increases accecibility.*/
+        window.onscroll = function() {myFunction()};
+
+        var navbar = document.getElementById("navbar");
+        var modal = document.getElementById('form01');
+        var sticky = navbar.offsetTop;
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+        function myFunction() {
+            if (window.pageYOffset >= sticky) {
+                navbar.classList.add("sticky")
+            } else {
+                navbar.classList.remove("sticky");
+            }
+        }
+    </script>
+
+
+    <footer>
+        <table class="t1" align="center">
+            <col width="400">
+            <col width="1000">
+            <col width="400">
+
+            <tr>
+                <td></td>
+                <td class="td2">Track Over</td>
+                <td></td>
+            </tr>
+
+            <td></td>
+            <!--an interaction issue with just displaying names of social media was an issue.It was solved by using visual icons.-->
+            <!--create visual icons to increase ease of access and understandability-->
+            <td class="td2"><i class="fa fa-facebook-square" style="font-size:25px"></i>
+                <i class="fa fa-whatsapp" style="font-size:25px"></i>
+                <i class="fa fa-android" style="font-size:25px"></i>
+                <i class="fa fa-google" style="font-size:24px"></i>
+            </td>
+            <td></td>
+            </tr>		<tr>
+            <td></td>
+           <!-- a glyphicon is used to display contact icon to solve the issue of readability.-->
+            <td class="td2"><span class="glyphicon">&#xe194;</span> copyrights 2018 by Track Over</td>
+            <td class="td2">contact us on: <a href="#">trackover@gmail.com</a></td>
+        </tr>
+        </table>
+
+    </footer>
+
+</div>
+</body>

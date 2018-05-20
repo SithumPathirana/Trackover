@@ -1,5 +1,5 @@
 
-  // Requiring the express module
+// Requiring the express module
 const express = require('express');
 
 // Require express handlebars
@@ -12,13 +12,13 @@ const path = require('path');
 const bodyParser = require('body-parser');
 
 // Middleware which store the data in the variable
-var urlencodedParser=bodyParser.urlencoded({extended:false});
+var urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 // Require mongoose
-const mongoose=require('mongoose');
+const mongoose = require('mongoose');
 
 // Require mongo module
-const mongo=require('mongodb');
+const mongo = require('mongodb');
 
 // Require firebase module
 var firebase = require("firebase");
@@ -31,15 +31,15 @@ var config = {
     projectId: "trackover-f78a8",
     storageBucket: "trackover-f78a8.appspot.com",
     // messagingSenderId: "620252106693"
-  };
-  firebase.initializeApp(config);
+};
+firebase.initializeApp(config);
 
 
 // Require assert
-const assert=require('assert');
+const assert = require('assert');
 
 // Mongodb url
-var url='mongodb://localhost/';
+var url = 'mongodb://localhost/';
 
 
 // Execute express
@@ -50,12 +50,12 @@ const app = express();
 //mongoose.connect('mongodb://trackover:trackover123@trackover-shard-00-00-ceozy.mongodb.net:27017,trackover-shard-00-01-ceozy.mongodb.net:27017,trackover-shard-00-02-ceozy.mongodb.net:27017/test?ssl=true&replicaSet=Trackover-shard-0&authSource=admin');
 
 // Importing user module
-const User=require('./user');
+const User = require('./user');
 
 app.use(express.static(path.join(__dirname, 'public')));
 //app.use(bodyParser.json());
 
- // Set the default layout as main.handlebars
+// Set the default layout as main.handlebars
 app.engine('handlebars', exphbs({
     defaultLayout: 'main'
 }));
@@ -72,10 +72,10 @@ app.get('/', (req, res) => {
 
 
 
- // Saving the users in a Mongo Database which can be used as an alternative 
- // for Firebase realtime database
+// Saving the users in a Mongo Database which can be used as an alternative 
+// for Firebase realtime database
 // app.post('/register',urlencodedParser, (req, res) => {
-    
+
 //    const user=new User({
 //        _id:new mongoose.Types.ObjectId(),
 //        firstName:req.body.fName,
@@ -84,70 +84,70 @@ app.get('/', (req, res) => {
 //        password:req.body.password,
 //        mobileNumber:req.body.mobileNumber
 //    });
-   
-   
+
+
 //     // Save the user
 //    user.save()
 //    .then(result=>{
 //        console.log(result);
 //    })
 //    .catch(err=>console.log(err));
-  
+
 //    // Redirecting to the index page 
 //    res.redirect('/');
-  
+
 // });
 
 // Register the user in firebase realtime database
-app.post('/register',urlencodedParser,(req,res)=>{
-    var email=req.body.email;
-    var password=req.body.password;
-     
-    firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+app.post('/register', urlencodedParser, (req, res) => {
+    var email = req.body.email;
+    var password = req.body.password;
+
+    firebase.auth().createUserWithEmailAndPassword(email, password).catch(function (error) {
         // Handle Errors here.
         var errorCode = error.code;
         var errorMessage = error.message;
-       
-        });
-       
-        
 
-    
-    firebase.auth().onAuthStateChanged(function(user) {
+    });
+
+
+
+
+    firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
-          // User is signed in.
-          var firstName=req.body.fName;
-          var email=req.body.email;
-          var lastName=req.body.lName;
-          var mobileNumber=req.body.mobileNumber;
-          
-          firebase.database().ref('Users/'+user.uid).set({
-               firstName:firstName,
-               lastName:lastName,
-               email:email,
-               mobileNumber:mobileNumber,
-               lattitude:"",
-               longitude:""
-          });
+            // User is signed in.
+            var firstName = req.body.fName;
+            var email = req.body.email;
+            var lastName = req.body.lName;
+            var mobileNumber = req.body.mobileNumber;
 
-         
+            firebase.database().ref('Users/' + user.uid).set({
+                firstName: firstName,
+                lastName: lastName,
+                email: email,
+                mobileNumber: mobileNumber,
+                lattitude: "",
+                longitude: ""
+            });
 
-          
+
+
+
         } else {
-          // No user is signed in.
+            // No user is signed in.
         }
-      });
+    });
 
-      res.redirect('/');
+    res.redirect('/');
 
-     
+
 
 });
 
 // Log In a user who has already signed up
-app.post('/login',urlencodedParser,(req,res,next)=>{
-    var email=req.body.uname;
-    var password=req.body.psw;
+app.post('/login', urlencodedParser, (req, res, next) => {
+    var email = req.body.uname;
+    var password = req.body.psw;
     console.log(email);
     console.log(password);
 
@@ -158,56 +158,56 @@ app.post('/login',urlencodedParser,(req,res,next)=>{
     //       console.log("User has not logged in");
     //     }
     //   });
-  
-   
+
+
     firebase.auth().signInWithEmailAndPassword(email, password)
-    .then(() => {
-        res.redirect('/track'); 
-        
-    })
-    .catch(function(error) {
+        .then(() => {
+            res.redirect('/track');
 
-        next();
-        
-        
-        // // Handle Errors here.
-        // var errorCode = error.code;
-        // var errorMessage = error.message;
-        // //console.log(errorCode);
-        // if(errorCode=="auth/wrong-password"){
-        //   res.redirect('/');
-        // }else{
-        //     res.redirect('/track'); 
-        // }
-        // var userId = firebase.auth().currentUser.uid;
-        // console.log(userId);
-     });
+        })
+        .catch(function (error) {
 
-       
+            next();
+
+
+            // // Handle Errors here.
+            // var errorCode = error.code;
+            // var errorMessage = error.message;
+            // //console.log(errorCode);
+            // if(errorCode=="auth/wrong-password"){
+            //   res.redirect('/');
+            // }else{
+            //     res.redirect('/track'); 
+            // }
+            // var userId = firebase.auth().currentUser.uid;
+            // console.log(userId);
+        });
+
+
     // firebase.auth().onAuthStateChanged(function(user) {
     //     if (user) {
     //         // var lattitude = firebase.database().ref(user.uid+'/lattitude');
     //         //  lattitude.on('value',function(snapshot){
     //         //      console.log(snapshot.val());
     //         //  });
-             
+
     //         //  var longitude = firebase.database().ref(user.uid+'/longitude');
     //         //  longitude.on('value',function(snapshot){
     //         //      console.log(snapshot.val());
     //         //  });
-           
+
     //     } else {
     //       // No user is signed in.
     //     }
-        
+
     //   });
-     
-
-   
-     
 
 
-    
+
+
+
+
+
 });
 
 
@@ -228,12 +228,12 @@ app.post('/login',urlencodedParser,(req,res,next)=>{
 //             return res.status(404).send();
 
 //         }
-        
+
 //         // Storing the users' information in an array
 //         var resultArray=[];
 //         mongo.connect(url,function(err,client){
 //             if(err) throw err;
-            
+
 //             // Connect to the 'trackover' database
 //             var db=client.db('trackover');
 //             assert.equal(null,err);
@@ -251,10 +251,10 @@ app.post('/login',urlencodedParser,(req,res,next)=>{
 //         });
 
 //         return res.render('track');
-         
+
 //      })
-     
-     
+
+
 // });
 
 
@@ -263,46 +263,46 @@ app.post('/login',urlencodedParser,(req,res,next)=>{
 // Direct the user to the track page
 app.get('/track', (req, res) => {
 
-  
-     // Get the lattitude and the longitude location of a user who has currently signed in.
-     //var user = firebase.auth().currentUser;
-    firebase.auth().onAuthStateChanged(function(user) {
+
+    // Get the lattitude and the longitude location of a user who has currently signed in.
+    //var user = firebase.auth().currentUser;
+    firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
             var a1;
             var a2;
-        
-           console.log(user.uid);
-           
-           var lat = firebase.database().ref('Users/'+user.uid+'/lattitude');
-           lat.on('value',function(snapshot){
-                 a1=snapshot.val();
-                 console.log(a1);
-           });
-           
-           var lon = firebase.database().ref('Users/'+user.uid+'/longitude');
-           lon.on('value',function(snapshot){
-              a2=snapshot.val();
-              console.log(a2);
 
-              
-              });
-             
-              res.render('track',{
-                lattitude:a1,
-                longitude:a2
-             
+            console.log(user.uid);
+
+            var lat = firebase.database().ref('Users/' + user.uid + '/lattitude');
+            lat.on('value', function (snapshot) {
+                a1 = snapshot.val();
+                console.log(a1);
             });
-         
+
+            var lon = firebase.database().ref('Users/' + user.uid + '/longitude');
+            lon.on('value', function (snapshot) {
+                a2 = snapshot.val();
+                console.log(a2);
+
+
+            });
+
+            res.render('track', {
+                lattitude: a1,
+                longitude: a2
+
+            });
+
 
         } else {
-          // No user is signed in.
+            // No user is signed in.
         }
-       
-      });
-        
-     
-    
-    
+
+    });
+
+
+
+
 });
 
 
@@ -318,19 +318,23 @@ app.post('/login', (req, res) => {
 });
 
 // Direct the user to the "About Us" page
-app.get('/aboutUs',(req,res)=>{
+app.get('/aboutUs', (req, res) => {
     res.render('aboutUs');
-   });
+});
 
 // Sign out a user
-app.get('/signout',(req,res)=>{
-    firebase.auth().signOut().then(function() {
+app.get('/signout', (req, res) => {
+    firebase.auth().signOut().then(function () {
         // Sign-out successful.
         res.redirect('/');
-      }).catch(function(error) {
+    }).catch(function (error) {
         // An error happened.
-      });
-     
+    });
+
+});
+
+app.get('/devices',(req,res)=>{
+    res.render('devices');
 });
 
 // Send a 404 error to irrelevent url requests
